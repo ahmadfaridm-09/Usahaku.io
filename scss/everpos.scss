@@ -1,0 +1,252 @@
+@use 'sass:map';
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+// 1. Include functions first (so you can manipulate colors, SVGs, calc, etc)
+@import "../bootstrap/scss/functions";
+
+
+// 2. Include any default variable overrides here
+
+*{
+    font-family: 'Montserrat', sans-serif
+}
+
+*:hover{
+    cursor: default;
+}
+
+//added colors
+
+$sidebar-color : #F8F8F9;
+$dark-blue: #405589;
+$light-blue:     #9ab3f0;
+$light-gray: #a1a1a1;
+$blueish-lg-gray: #878b94;
+$blue-white: #cfd4df;
+$sidebar-selected: #efefef;
+
+//overriden colors
+
+$blue:    #4f74cd;
+$red:     #de5555;
+$gray: #6c6c6c;
+$purple: #b763e9;
+$orange: #FCA63C;
+
+$primary: $dark-blue;
+$secondary: $gray;
+
+//overriden border
+$border-color: $blue-white;
+
+$removed-theme-colors: 
+//"primary",
+//"secondary",
+"success",
+"info",
+"warning",
+"danger",
+"light",
+"dark"
+;
+
+
+$theme-colors: (
+    "primary": $primary,
+    "secondary": $secondary
+);
+
+$theme-colors: map-remove($theme-colors, $removed-theme-colors);
+
+// 3. Include remainder of required Bootstrap stylesheets
+@import "../bootstrap/scss/variables";
+@import "../bootstrap/scss/mixins";
+@import "../bootstrap/scss/utilities";
+@import "../bootstrap/scss/utilities/api";
+
+// 4. Include any optional Bootstrap components as you like
+@import "../bootstrap/scss/reboot";
+@import "../bootstrap/scss/buttons";
+@import "../bootstrap/scss/type";
+@import "../bootstrap/scss/containers";
+@import "../bootstrap/scss/grid";
+
+//my own css
+$sidebar-header-padding : map.get($spacers, 2);
+
+.sidebar-wrapper{
+    background-color: $sidebar-color;
+    transition: width 0.2s ease-out;
+}
+
+.sidebar-wrapper.small{
+    
+}
+
+.sidebar{
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    height: 100vh;
+}
+
+.sidebar-header{
+    padding: $sidebar-header-padding;
+}
+
+.sidebar-logo-wrapper{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.sidebar-logo{
+    opacity: 0;
+    transform: translateY(15px);
+    transition: opacity 0.4s ease-out, transform 0.4s ease-out;
+}
+
+.sidebar-logo-mini{
+    opacity: 0;
+    transform: translateY(15px);
+    transition-delay: 0.3s;
+    transition: opacity 0.4s ease-out, transform 0.4s ease-out;
+}
+
+.sidebar-logo-mini, .sidebar-logo{
+    font-size: 1.25em;
+    font-weight: 800;
+}
+
+.sidebar-logo.loaded{
+    transform: translateY(0px);
+    opacity: 1;
+    display: initial;
+}
+
+.sidebar-logo.unloaded{
+    display: none;
+}
+
+.sidebar-logo-mini.unhide{
+    transform: translateY(0px);
+    opacity: 1;
+    display:initial;
+}
+
+.sidebar-logo-mini.hide{
+    display:none;
+}
+
+.unload.hide{
+    display:none;
+}
+
+
+.sidebar-menu-wrapper{
+    display: flex;
+    flex-direction: row;
+    height: calc(100vh - $sidebar-header-padding);
+    flex:1;
+}
+
+.sidebar-right{
+    flex: auto;
+    padding: 1em 0 1em;
+}
+
+.sidebar-mini{
+    padding: 1em 0 1em;
+}
+
+.sidebar-mini{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    column-gap: 0.2em;
+}
+
+ul.sidebar-item, .sidebar-right > ul{
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+ul.sidebar-item{
+    display: flex;
+    gap: 0.2em;
+    flex-direction: column;
+    padding: 0.5em;
+    cursor: pointer;
+}
+
+.sidebar-right > ul{
+    gap: 0.8em;
+    display: flex;
+    flex-direction: column;
+}
+
+.sidebar-right > ul > li, ul.sidebar-item > li{
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    color: $secondary;
+    margin: 0 0.5em 0;
+}
+
+ul.sidebar-item > li{
+    font-size: 0.75em;
+}
+.sidebar-right > ul > li{
+    font-size: 1em;
+}
+
+.sidebar-right > ul > li > span{
+    border-radius: 100px;
+    padding: 0.1em 0.2em 0.1em;
+    transition: background-color 0.5s, color 0.5s;
+}
+
+.sidebar-right.hide{
+    display:none;
+}
+
+.sidebar-right > ul > li > span:hover{
+    font-weight: 600;
+    background-color: $sidebar-selected;
+    color: $primary;
+    cursor: pointer;
+}
+
+//Sidebard select transform
+
+ul.sidebar-item > li > img, .profile-option > img{
+    width: 20px;
+    height: 20px;
+    filter: invert(47%) sepia(0%) saturate(0%) hue-rotate(291deg) brightness(87%) contrast(83%);
+}
+
+
+.profile-picture{
+    width: 40px;
+    height: 40px;
+    border-radius: 100px;
+}
+.profile-picture-big{
+    width: 80px;
+    height: 80px;
+    border-radius: 100px;
+}
+
+.profile-name{
+    font-weight: 500;
+
+}
+
+
+.content-wrapper{
+}
+
+
+.side-profile{
+    width: 250px;
+}
